@@ -8,7 +8,6 @@ import { promise } from 'protractor';
   providedIn: 'root'
 })
 export class ServiceService {
-<<<<<<< HEAD
 
   private puclickey = "";
   private privatekey = "";
@@ -29,60 +28,23 @@ export class ServiceService {
         })
       })
     }
+    
     private generatesTS(){
       return Math.floor(100000 + Math.random() * 900000);
     }
     private getHash(ts){
       return Md5.hashStr(ts + this.privatekey + this.puclickey);
     }
-  }
+    private getKeys(){
+      return new Promise((ret) => {
+        this.http.get('assets/keys.jso').subscribe((keys:any)=>{
+          this.puclickey = keys.public;
+          this.privatekey = keys.private;
 
-=======
-  private publicKey  = "";
-  private privateKey = "";
-
-  private host = "http://gateway.marvel.com/";
-
-  constructor(private http: HttpClient){}
-
-  public getDados(url: string, parameters: string){
-    let ts = this.generateTs();
-    
-    return new Promise((ret) => {
-      this.http.get(this.host + url + '?ts=' 
-      + ts + '&apikey=' + this.publicKey 
-      + '&hash=' + this.getHash(ts) + parameters).subscribe((response) => {
-        
-        if(response){
-          ret(response);
-
-        } else {
-          ret(false);
-        }
-      })          
-    })
-
-  }
-  
-  private generateTs(){
-    return Math.floor(100000 + Math.random() * 900000);
-  }
-
-  private getHash(ts){
-    return Md5.hashStr(ts + this.privateKey + this.publicKey);
-  }
-
-  private getKeys(){
-    return new Promise((ret) => {
-      this.http.get('assets/keys.json').subscribe((keys:any) => {
-        this.publicKey  = keys.public;
-        this.privateKey = keys.private;
-
-        ret(true);
+          ret(true);
+        })
       })
-    })
+    }
+
   }
 
-
-}
->>>>>>> 2943136f5d81514e9bd9b2bc579d9c7769029efb
