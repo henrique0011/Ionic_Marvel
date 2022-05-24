@@ -28,6 +28,9 @@ export class CharacterService {
     pagination: PaginationComponent,
     filter : string){
     let strFilter ='';
+      if(filter){
+        strFilter = '&nameStrarwhith=' + filter;
+      }
 
     let param = '&limit=' + pagination.getLimit() + '&offset' + pagination.getOffset() + strFilter;
 

@@ -35,7 +35,7 @@ constructor(private CharacterService: CharacterService, private navCtrl: NavCont
         this.pagination.reset();
       }
 
-    this.CharacterService.getAllCharters(this.pagination, "").then((characters:any) => {
+    this.CharacterService.getAllCharters(this.pagination, this.filtro.descricao).then((characters:any) => {
       console.log(characters)
       this.filtro.bkp = this.filtro.descricao;
       this.characters = [];

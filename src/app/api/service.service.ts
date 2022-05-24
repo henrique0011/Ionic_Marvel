@@ -19,6 +19,7 @@ export class ServiceService {
       let ts = this.generatesTS();
 
       return new Promise((ret) => {
+        this.getKeys().then(_ => {
         this.http.get(this.host + url + "?ts+" + ts + "&apikey=" + this.puclickey + "$hash" + this.getHash(ts) + paramters).subscribe((Response) => {
           if(Response){
             ret(Response);
@@ -27,7 +28,8 @@ export class ServiceService {
           }
         })
       })
-    }
+    })
+  }
     
     private generatesTS(){
       return Math.floor(100000 + Math.random() * 900000);
