@@ -10,38 +10,40 @@ import { PaginationComponent } from '../util/pagination/pagination.component';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  public characters = [];
 
   public filtro = {
     descricao: '',
     bkp: ''
 
   }
-    public characters = [];
+    
     public pagination = new PaginationComponent();
     public checking = true;
 
-constructor(private CharacterService: CharacterService, private navCtrl: NavController){
-  this.pagination.setLimit(10);
-  this.getAllCharacters();
+ constructor(private characterServices: CharacterService, private navCtrl :NavController){
+    
+    this.pagination.setLimit(10);
+    this.getAllCharacters();
+
 
 }
 
 
   public getAllCharacters(){
 
-
+    this.checking = true;
 
       if(this.filtro.descricao != this.filtro.bkp){
         this.pagination.reset();
       }
 
-    this.CharacterService.getAllCharters(this.pagination, this.filtro.descricao).then((characters:any) => {
+    this.characterServices.getAllCharacters(this.pagination, this.filtro.descricao).then((characters:any) => {
       console.log(characters)
       this.filtro.bkp = this.filtro.descricao;
       this.characters = [];
       this.characters = characters;
-      this.checking = false
-    
+      this.checking = false;
     });
   }
 
