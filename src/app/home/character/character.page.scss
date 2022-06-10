@@ -3,7 +3,7 @@
 }
 
 .character-img{
-  width: 100%;
+  width: 20%;
   border-radius: 4px;
 }
 
@@ -60,5 +60,10 @@
   .page-subtitle{
     text-align: left;
     font-size: 1.4rem;
+  }
+
+  .center{
+  background: var(--dark-snow);
+
   }
 }

@@ -9,7 +9,7 @@ export class CharacterService {
 
   constructor(private service: ServiceService) { }
 
-  public getCharecterById(id: number){
+  public getCharacterById(id: number){
     return new Promise((ret)=>{
       this.service.getDados('/v1/public/characters/' + id,'')
       .then((data: any)=>{
@@ -48,7 +48,7 @@ export class CharacterService {
       })
     }
     
-  public getComicsByCharater(character: any){
+  public getComicsByCharacter(character: any){
     return new Promise((ret)=>{
       this.service.getDados('v1/public/characters/' + character.id + '/comics', '').then((data:any) => {
         if (data && data.data && data.data.results){
